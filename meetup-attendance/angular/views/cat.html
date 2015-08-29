@@ -1,0 +1,32 @@
+<div class="container">
+<div class="container">
+<center><br>
+<div class="h3">
+Seller Ranking by Regions and Category:
+</div>
+<br></center>
+
+<div class="col-md-12 col-xs-4">
+<input class="form-control" ng-model="nameFilter" placeholder="Search"/>
+</div>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Store ID</th>
+            <th>Region ID</th>
+            <th>Category ID</th>
+            <th>Score of Seller</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr ng-repeat="item in response2 | filter: nameFilter">
+        <td>{{item.store_id}}</td>
+        <td>{{item.region_id}}</td>
+        <td>{{item.category_id}}</td>
+        <td>{{item.category_score}}</td>
+        </tr>
+    </tbody>
+    </table>
+
+</div>
