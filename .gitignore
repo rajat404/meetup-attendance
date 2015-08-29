@@ -1,2 +1,5 @@
 venv/
+log/
 config.ini
+nginx.conf
+uwsgi_conf.ini

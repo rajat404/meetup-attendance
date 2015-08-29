@@ -12,7 +12,7 @@ group_name = parser.get("settings", "group_name")
 
 app = Flask(__name__)
 
-class AttendanceView(FlaskView):
+class ApiView(FlaskView):
 
     def index(self):
         return "Hello World"
@@ -61,7 +61,7 @@ class AttendanceView(FlaskView):
         return json.dumps(response), 200
 
 
-AttendanceView.register(app)
+ApiView.register(app)
 
 if __name__ == '__main__':
     app.run()
