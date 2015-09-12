@@ -3,3 +3,5 @@ log/
 config.ini
 nginx.conf
 uwsgi_conf.ini
+*.pyc
+*.py~

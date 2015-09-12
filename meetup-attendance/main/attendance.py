@@ -18,15 +18,15 @@ class ApiView(FlaskView):
         return "Hello World"
 
 
-    @route('/<event_id>/complete/')
+    @route('/roster/<event_id>/complete/')
     def get_roster(self, event_id):
         """
         Description: Get list of all the people who RSVP'd `yes`
         Params:
             - event_id: unique number repersenting a single event (found in the URL)
 
-        URL: <Host-IP>/attendance/<event_id>/complete/ 
-        Sample Request: <Host-IP>/attendance/224668752/complete/ 
+        URL: <Host-IP>/api/roster/<event_id>/complete/ 
+        Sample Request: <Host-IP>/api/roster/224668752/complete/ 
         """
         event_id = int(event_id)
         url = "https://api.meetup.com/{}/events/{}/attendance?key={}".format(group_name,event_id,api_key)
@@ -50,8 +50,8 @@ class ApiView(FlaskView):
             - member_id: ID of each member of the group, can be fetched by /complete/ API
             - member_status: can be `absent` or `attended` or `noshow`
 
-        URL: <Host-IP>/attendance/<event_id>/mark/<member_id>/<member_status>/ 
-        Sample Request: <Host-IP>/attendance/224668752/mark/58178002/absent/ 
+        URL: <Host-IP>/api/<event_id>/mark/<member_id>/<member_status>/ 
+        Sample Request: <Host-IP>/api/224668752/mark/58178002/absent/ 
         """
         event_id = int(event_id)
         payload = {'member':member_id, 'status':member_status}
@@ -63,5 +63,5 @@ class ApiView(FlaskView):
 
 ApiView.register(app)
 
-if __name__ == '__main__':
-    app.run()
+# if __name__ == '__main__':
+#     app.run()
