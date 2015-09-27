@@ -18,4 +18,8 @@ angular.module('mainController', [])
                 }
             });
         }
+
+        $scope.submitName = function(){
+            console.log("inside submitName function")
+        }
     }]);
