@@ -1,4 +1,4 @@
-angular.module('attendanceApp',['ngRoute', 'mainController', 'mainService'])
+angular.module('attendanceApp',['ui.bootstrap', 'ngRoute', 'mainController', 'mainService'])
 .config(['$routeProvider', '$locationProvider', function($routeProvider) {
   $routeProvider.
         when("/", {templateUrl: "views/home.html", controller: "postController"}).
