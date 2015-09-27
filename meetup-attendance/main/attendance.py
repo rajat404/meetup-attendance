@@ -12,11 +12,11 @@ group_name = parser.get("settings", "group_name")
 
 app = Flask(__name__)
 
+
 class ApiView(FlaskView):
 
     def index(self):
         return "Hello World"
-
 
     @route('/roster/<event_id>/complete/')
     def get_roster(self, event_id):
@@ -29,17 +29,18 @@ class ApiView(FlaskView):
         Sample Request: <Host-IP>/api/roster/224668752/complete/ 
         """
         event_id = int(event_id)
-        url = "https://api.meetup.com/{}/events/{}/attendance?key={}".format(group_name,event_id,api_key)
+        url = "https://api.meetup.com/{}/events/{}/attendance?key={}".format(
+            group_name, event_id, api_key)
         req = requests.get(url)
         response = req.json()
         # List of all the attendees
         all_attendees = []
         for attendee in response:
             temp = {}
-            temp[attendee['member']['id']] = str(attendee['member']['name']).lower()
+            temp[attendee['member']['id']] = str(
+                attendee['member']['name']).lower()
             all_attendees.append(temp)
         return json.dumps(all_attendees), 200
-
 
     @route('/<event_id>/mark/<member_id>/<member_status>/', endpoint='mark_attendance')
     def mark_attendance(self, event_id, member_id, member_status):
@@ -54,14 +55,12 @@ class ApiView(FlaskView):
         Sample Request: <Host-IP>/api/224668752/mark/58178002/absent/ 
         """
         event_id = int(event_id)
-        payload = {'member':member_id, 'status':member_status}
-        url = "https://api.meetup.com/{}/events/{}/attendance?key={}".format(group_name,event_id,api_key)
+        payload = {'member': member_id, 'status': member_status}
+        url = "https://api.meetup.com/{}/events/{}/attendance?key={}".format(
+            group_name, event_id, api_key)
         req = requests.post(url, params=payload)
         response = req.json()
         return json.dumps(response), 200
 
 
 ApiView.register(app)
-
-# if __name__ == '__main__':
-#     app.run()
